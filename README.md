@@ -1,9 +1,9 @@
-collect.js looks at gzipped web/cache server log files in Common Log
+__collect.js__ looks at gzipped web/cache server log files in Common Log
 Format, extracts for each day the number of home page hits from each
 unique IP address, geo-country-locates each IP address, stores in sqlite
 database.
 
-report.js looks at sqlite database and prints in CSV format the number
+__report.js__ looks at sqlite database and prints in CSV format the number
 of unique IP addresses for each country for each day.
 
 These scripts are motivated by a research request for data showing
@@ -35,15 +35,19 @@ no reason to.
 
 #Usage
 
+```
   node collect.js dbfile <logfiles>
 
   node report.js dbfile
+```
 
 collect.js does not handle bad files; if you have some in your log
 directory you might invoke collect.js for each file; then the bad files
 won't be processed rather than halting all processing, eg:
 
+```
   find path/to/logs -type f -exec node collect.js a.db {} \;
+```
 
 collect.js may run for a long time after printing to the console that
 it has processed files. It is making sqlite inserts.
